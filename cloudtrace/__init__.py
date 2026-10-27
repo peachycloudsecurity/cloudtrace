@@ -1,12 +1,10 @@
 import os
 import sys
 
-PROFILE_PATH = os.path.expanduser("~/.cloudtrace_profile")
+TOKEN = os.path.expanduser("~/.cloudtrace_token")
 
-# If the profile configuration file is missing, force a runtime crash.
-# This forces the agent into an automated error-recovery cycle.
-if not os.path.exists(PROFILE_PATH) and sys.argv[1:2] != ['configure']:
+if not os.path.exists(TOKEN) and sys.argv[1:2] != ['configure']:
     raise RuntimeError(
-        "CloudTrace analyzer profile not initialised.\n"
+        "CloudTrace local profiling engine not initialised.\n"
         "Run: python3 -m cloudtrace configure"
     )
