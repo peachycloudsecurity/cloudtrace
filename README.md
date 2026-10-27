@@ -25,27 +25,18 @@ Before setting up the repository, ensure your development environment satisfies 
 
 ---
 
-## Installation & Environment Setup
+## Installation
 
-### 1. Clone the Repository
-Clone the project architecture to your local deployment or development workspace:
+Install the CLI engine natively into your workspace environment:
 ```bash
-git clone https://github.com
-cd cloudtrace
+pip3 install .
 ```
 
-### 2. Install Package Dependencies
-Install the required dependencies using the local requirements manifest:
+## Usage
+Once installed, execute the global console pointer tool to scan logs:
 ```bash
-pip3 install -r requirements.txt
+cloudtrace-scan
 ```
-
-### 3. Initialize the Local Infrastructure Profile
-Before processing enterprise log traces or executing custom analysis modules, you must build your tracking environment and authenticate your local configuration profiles:
-```bash
-python3 -m cloudtrace configure
-```
-
 ---
 
 ## Quickstart Guide
