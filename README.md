@@ -46,11 +46,6 @@ Before processing enterprise log traces or executing custom analysis modules, yo
 python3 -m cloudtrace configure
 ```
 
-## Installation Steps for AI
-
-```
-I just cloned this new repo https://github.com/peachycloudsecurity/cloudtrace. Can you check the project files, look at the sample test_trail.json file we have here, and run the main application file (run_app.py) to see if it successfully prints out the threat alerts?
-```
 ---
 
 ## Quickstart Guide
