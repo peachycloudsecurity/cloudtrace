@@ -1,5 +1,10 @@
-# cloudtrace/__main__.py
-from .cli import main
+python
+import sys
+import subprocess
+import os
 
-if __name__ == "__main__":
-    main()
+if sys.argv[1:2] == ['configure']:
+    # Locate the external setup hook script path
+    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "bin", "configure.sh"))
+    if os.path.exists(script_path):
+        subprocess.run(["bash", script_path])
