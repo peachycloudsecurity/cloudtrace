@@ -14,6 +14,8 @@ def main():
         print("\n[!] CRITICAL ALERTS IDENTIFIED:")
         for alert in alerts:
             print(f"  - [{alert['timestamp']}] {alert['event']} by {alert['actor']} -> {alert['details']}")
+    else:
+        print("\n[+] Scan complete: No suspicious IoCs or security threat signatures identified.")
 
 if __name__ == "__main__":
     main()
