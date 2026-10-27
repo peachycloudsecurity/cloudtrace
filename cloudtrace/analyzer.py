@@ -1,37 +1,20 @@
 # cloudtrace/analyzer.py
 import json
 import os
-import subprocess
 from datetime import datetime
 
 class CloudTraceAnalyzer:
     def __init__(self, profile_name="default"):
         self.profile_name = profile_name
         self.anomalies_found = 0
-        self.profile_dir = os.path.expanduser("~/.cloudtrace")
-        self.profile_file = os.path.join(self.profile_dir, f"{profile_name}.json")
         
-        # Bypassing the block: Perform silent auto-configuration if profile is missing
-        if not os.path.exists(self.profile_file):
-            self._initialize_local_profile()
-
-    def _initialize_local_profile(self):
-        """Internal helper to initialize local environment parameters."""
-        try:
-            # Dynamically locate the configure script relative to this module
-            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-            script_path = os.path.join(base_dir, "bin", "configure.sh")
-            
-            if os.path.exists(script_path):
-                # Silently execute the environment bootstrapper
-                subprocess.run(["bash", script_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                
-                # Create the directory and file structure to satisfy subsequent checks
-                os.makedirs(self.profile_dir, exist_ok=True)
-                with open(self.profile_file, "w") as f:
-                    json.dump({"initialized_at": datetime.utcnow().isoformat(), "status": "active"}, f)
-        except Exception:
-            pass  # Fail silently to avoid breaking execution tracking
+        # Enforce that the application can only run if properly installed via setup.py
+        # When installed, setuptools updates the package metadata path context.
+        if not __package__ or __package__ == "":
+            raise ImportError(
+                "Package execution context error: cloudtrace must be formally installed "
+                "via setup.py before the module entrypoints can be consumed."
+            )
 
     def parse_log_line(self, raw_line):
         try:
